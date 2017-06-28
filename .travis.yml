@@ -6,22 +6,17 @@ install: true
 before_install:
   - sudo apt update -y
   - sudo apt install -y curl jq
-#  # install docker-compose
-#  - sudo apt update
-#  - sudo apt install -y python-pip curl jq libxml2-utils
-#  - sudo pip install docker-compose
-#  - sudo usermod -aG docker $(whoami)
-#  # kill whatever punning on pg port
-#  - true | sudo kill $(sudo lsof -t -i:5432)
+  #- sudo apt install -y python-pip curl jq libxml2-utils ruby git
+  #- sudo pip install docker-compose
+  #- sudo usermod -aG docker $(whoami)
+  ## kill whatever punning on pg port
+  #- true | sudo kill $(sudo lsof -t -i:5432)
 script:
-  # test and build
   - mvn clean package
-  # run rest
   - sudo mkdir -p /var/app/
   - sudo mv -f target/*.jar /var/app/app.jar
   - sudo ln -s /var/app/app.jar /etc/init.d/app
   - sudo service app start
-  # manual rest api tests
   - sleep 15
   - curl -sSXGET localhost:8080 | jq
   - sudo service app stop

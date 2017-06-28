@@ -1,8 +1,79 @@
 = fabric8.io image:https://travis-ci.org/daggerok/fabric8.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/fabric8"]
 
-3. start local cluster (failed, why? in progress...)
+5. using gofabric8
+
 [source,bash]
+----
+#gofabric8 version                                                                    23:24:57
+#gofabric8 start --batch --minishift --console --username developer --password developer # --vm-driver (hyperv, xhyve, kvm, virtualbox or vmwarefusion)
+#gofabric8 start -b --console --open-console -y --vm-driver vmwarefusion
+gofabric8 start -b --minishift --console --open-console -y --vm-driver vmwarefusion
+
+...
+
+-- Server Information ...
+   OpenShift server started.
+   The server is accessible via web console at:
+       https://192.168.67.131:8443
+
+   You are logged in as:
+       User:     developer
+       Password: developer
+
+   To login as administrator:
+       oc login -u system:admin
+...
+
+You don't have any projects. You can try to create a new project, by running
+
+    oc new-project <projectname>
+...
+
+Deploying fabric8 to your OpenShift installation at https://192.168.67.131:8443 for domain 192.168.67.131.xip.io in namespace default
+
+...
+
+
+Default GOGS admin username/password = gogsadmin/RedHat$1
+
+...
+
+open https://192.168.67.131:8443
+
+gofabric8 stop
+gofabric8 cleanup
+WARNING this is destructive and will remove ALL fabric8 apps, environments and configuration from cluster /192-168-67-131:8443/admin.  Continue? [y/N] y
+Removing...
+sudo rm -rf ~/.minishift
+----
+
+4. start local cluster (failed, why? in progress...)
+[source,bash]
+----
+minishift setup-cdk
+minishift delete
+
 mvn fabric8:cluster-start -Dfabric8.cluster.kind=openshift
+# or
+mvn fabric8:cluster-start -Dfabric8.cluster.kind=minikube
+# or
+mvn fabric8:cluster-start
+----
+
+3. settings.xml
+[source,xml]
+----
+<settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/SETTINGS/1.0.0
+                      https://maven.apache.org/xsd/settings-1.0.0.xsd">
+
+  <server>
+    <username>developer</username>
+    <password>developer</password>
+  </server>
+</settings>
+----
 
 2. setup fabric8 maven plugin
 [source,bash]
