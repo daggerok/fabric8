@@ -1,0 +1,5 @@
+= fabric8.io
+
+[source,bash]
+mvn package spring-boot:run
+http :8080
