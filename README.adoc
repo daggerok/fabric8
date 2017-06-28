@@ -1,4 +1,4 @@
-= fabric8.io
+= fabric8.io image:https://travis-ci.org/daggerok/fabric8.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/fabric8"]
 
 [source,bash]
 mvn package spring-boot:run
