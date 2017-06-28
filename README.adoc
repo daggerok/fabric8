@@ -3,3 +3,8 @@
 [source,bash]
 mvn package spring-boot:run
 http :8080
+
+setup fabric8 maven plugin
+[source,bash]
+mvn io.fabric8:fabric8-maven-plugin:3.1.49:setup
+
