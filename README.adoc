@@ -1,7 +1,6 @@
 = fabric8.io image:https://travis-ci.org/daggerok/fabric8.svg?branch=master["Build Status", link="https://travis-ci.org/daggerok/fabric8"]
 
-5. using gofabric8
-
+.using gofabric8
 [source,bash]
 ----
 #gofabric8 version                                                                    23:24:57
@@ -47,7 +46,7 @@ Removing...
 sudo rm -rf ~/.minishift
 ----
 
-4. start local cluster (failed, why? in progress...)
+.start local cluster (failed, why? in progress...)
 [source,bash]
 ----
 minishift setup-cdk
@@ -60,7 +59,7 @@ mvn fabric8:cluster-start -Dfabric8.cluster.kind=minikube
 mvn fabric8:cluster-start
 ----
 
-3. settings.xml
+.settings.xml
 [source,xml]
 ----
 <settings xmlns="http://maven.apache.org/SETTINGS/1.0.0"
@@ -75,11 +74,11 @@ mvn fabric8:cluster-start
 </settings>
 ----
 
-2. setup fabric8 maven plugin
+.setup fabric8 maven plugin
 [source,bash]
 mvn io.fabric8:fabric8-maven-plugin:3.1.49:setup
 
-1. up and running boot app
+.up and running boot app
 [source,bash]
 mvn package spring-boot:run
 http :8080
